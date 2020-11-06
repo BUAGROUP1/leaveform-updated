@@ -1,0 +1,20 @@
+.white-text{
+    color:var(--white-text);
+}
+
+.npage{
+    padding-top: 100px;
+}
+
+
+.npage2{
+    padding-top: 100px;
+    margin-left: 40px;
+    margin-right: 20px;
+}
+
+
+
+:root{
+    --white-text: #fff;
+}
