@@ -5,7 +5,7 @@
     <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="icon" type="image/favicon" href="/img/logo.jpg">
 
 
     <!-- Title Page-->
@@ -28,12 +28,15 @@
     <link href="/vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    
 
     <!-- Main CSS-->
     <link href="/css/theme.css" rel="stylesheet" media="all">
 
     <!-- my css -->
     <link rel="stylesheet" href="/css/sickomode.css">
+
+    @yield('header')
 
 </head>
 
@@ -60,16 +63,26 @@
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
                         
-                        <li>
+                        <li class="{{ Request::is('home*') ? 'active' : '' }}">
                             <a href="/home">
-                                <i class="fas fa-tachometer"></i>Dashboard</a>
+                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                        <li>
-                            <a href="table.html">
-                                <i class="fas fa-table"></i>Tables</a>
+                        <li class="{{ Request::is('leaveform-page*') ? 'active' : '' }}">
+                            <a href="/leaveform-page">
+                                <i class="fas fa-list-alt"></i>Leaveform</a>
                         </li>
-                    
-                        
+                        <li class="{{ Request::is('users_approved*') ? 'active' : '' }}">
+                            <a href="/users_approved">
+                                <i class="fas fa-check-circle"></i>Approved Forms</a>
+                        </li>
+                        <li class="{{ Request::is('users_pending*') ? 'active' : '' }}">
+                            <a href="/users_pending">
+                                <i class="fas fa-exclamation"></i>Pending Forms</a>
+                        </li>
+                        <li class="{{ Request::is('user_calendar*') ? 'active' : '' }}">
+                            <a href="/user_calendar">
+                                <i class="fas fa-calendar-alt"></i>Calendar</a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -82,21 +95,32 @@
                 <a href="#">
                     <img src="/img/logo.jpg" style="height: 40px; width: 40px" alt="BUA" />
                 </a>
-                <span class="ml-4">BUA Leave App</span>
+                <span class="ml-4">BUA Leave</span>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         
-                        <li>
+                        <li class="{{ Request::is('home*') ? 'active' : '' }}">
                             <a href="/home">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                        <li>
+                        <li class="{{ Request::is('leaveform-page*') ? 'active' : '' }}">
                             <a href="/leaveform-page">
                                 <i class="fas fa-list-alt"></i>Leaveform</a>
                         </li>
-                        
+                        <li class="{{ Request::is('users_approved*') ? 'active' : '' }}">
+                            <a href="/users_approved">
+                                <i class="fas fa-check-circle"></i>Approved Forms</a>
+                        </li>
+                        <li class="{{ Request::is('users_pending*') ? 'active' : '' }}">
+                            <a href="/users_pending">
+                                <i class="fas fa-exclamation"></i>Pending Forms</a>
+                        </li>
+                        <li class="{{ Request::is('user_calendar*') ? 'active' : '' }}">
+                            <a href="/user_calendar">
+                                <i class="fas fa-calendar-alt"></i>Calendar</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -110,19 +134,13 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">
-                            <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search"
-                                    placeholder="Search for datas &amp; reports..." />
-                                <button class="au-btn--submit" type="submit">
-                                    <i class="zmdi zmdi-search"></i>
-                                </button>
-                            </form>
+                            <div class="au-input au-input--xl" style="visibility: hidden;"></div>
                             <div class="header-button">
                                
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="" alt="" />
+                                            <img src="/uploads/avatars/{{ auth()->user()->avatar }}" alt="" />
                                         </div>
                                         <div class="content">
                                         <a class="js-acc-btn" href="#">{{ auth()->user()->name}}</a>
@@ -131,7 +149,7 @@
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="/img/default-avatar.png" alt="" />
+                                                        <img src="/uploads/avatars/{{ auth()->user()->avatar }}" alt="" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
@@ -143,7 +161,7 @@
                                             </div>
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
-                                                    <a href="#">
+                                                    <a href="/user_profile">
                                                         <i class="zmdi zmdi-account"></i>Profile</a>
                                                 </div>
                                             </div>
@@ -178,12 +196,7 @@
                     </div>
                 </div>
             </div>
-             
-        </div>
-
-
-
-        {{-- footer --}}
+            
         <div class="row">
             <div class="col-md-12">
                 <div class="copyright">
@@ -191,7 +204,8 @@
                 </div>
             </div>
         </div>
-        {{-- end footer --}}
+        
+        </div>
     </div>
 
     <!-- Jquery JS-->
@@ -215,11 +229,19 @@
     <script src="/vendor/select2/select2.min.js">
     </script>
 
+    <script>
+        $(document).ready( function () {
+        $('#datatable').DataTable();
+    } );    
+    </script>
+
     <!-- Main JS-->
     <script src="/js/main.js"></script>
 
     {{-- sweet alert --}}
     @include('sweetalert::alert')
+
+    @yield('scripts')
 
 </body>
 

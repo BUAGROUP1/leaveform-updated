@@ -23,7 +23,7 @@ class AdminMiddleware
         }
         else
         {
-            return redirect('/a_view_errors');
+            return redirect('/all_view_errors');
         }
     }
 }

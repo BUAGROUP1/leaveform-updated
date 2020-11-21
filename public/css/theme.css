@@ -1397,9 +1397,9 @@ section {
     font-size: 12px;
 }
 
-.account-wrap {
+/* .account-wrap {
     position: relative;
-}
+} */
 
 .account-item {
     cursor: pointer;

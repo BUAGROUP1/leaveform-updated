@@ -16,7 +16,7 @@
             <h5 class="title">{{__(" Edit Profile")}}</h5>
           </div>
           <div class="card-body">
-            <form method="post" action="{{ route('profile.update') }}" autocomplete="off"
+            <form method="post" action="{{ route('profile.edit') }}" autocomplete="off"
             enctype="multipart/form-data">
               @csrf
               @method('put')
@@ -97,7 +97,7 @@
           <div class="card-body">
             <div class="author">
               <a href="#">
-                <img class="avatar border-gray" src="/img/default-avatar.png" alt="...">
+                <img class="avatar border-gray" src="/uploads/avatars/{{ auth()->user()->avatar }}" alt="...">
                 <h5 class="title">{{ auth()->user()->name }}</h5>
               </a>
               <p class="description">
@@ -105,7 +105,16 @@
               </p>
             </div>
           </div>
-          
+          {{-- the update the user profile --}}
+          <div>
+            <form action="{{ url('a_profile_image_update') }}" method="POST" enctype="multipart/form-data">
+              <label for="user_image" class="mx-4">Update profile picture</label><br>
+              <input type="file" name="avatar" id="avatar" class="ml-4"/>
+              <input type="hidden" name="_token" value="{{ csrf_token() }}"><br>
+              <button type="submit" class="btn btn-primary btn-round mx-4 my-3 float-right">update</button>
+            </form>
+          </div>
+
         </div>
       </div>
 

@@ -27,9 +27,11 @@ Edit
                                 <div class="form-group">
                                     <label>Give Role</label>
                                     <select name="usertype" class="form-control">
-                                        <option value="admin">Admin</option>
                                         <option value="user">User</option>
-                                        <option value="">None</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="hr">HR</option>
+                                        <option value="supervisor">Supervisor</option>\
+                                        <option value="hod">HOD</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-success"> Update</button>

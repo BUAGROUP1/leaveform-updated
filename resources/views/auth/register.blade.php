@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', [ 'class' => 'bg_color'])
 
 @section('content')
 <div class="container">
@@ -39,6 +39,44 @@
                             </div>
                         </div>
 
+                        {{-- input phone --}}
+                        <div class="form-group row">
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="phone" type="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+
+                                @error('phone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        {{-- end phone --}}
+
+                        {{-- input staff id --}}
+                        <div class="form-group row">
+                            <label for="StaffID" class="col-md-4 col-form-label text-md-right">{{ __('Staff ID') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="StaffID" type="StaffID" class="form-control @error('StaffID') is-invalid @enderror" name="StaffID" value="{{ old('StaffID') }}" required autocomplete="StaffID">
+
+                                @error('StaffID')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        {{-- end staff id --}}
+
+                        {{-- hidden user type --}}
+                        <input type="hidden" value="user" name="usertype" id="usertype" hidden>
+                        {{-- input user image --}}
+
+                        
+
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
@@ -60,6 +98,8 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

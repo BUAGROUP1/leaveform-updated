@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Response;
+use App\Images;
+use Image;
 
 class ProfileController extends Controller
 {

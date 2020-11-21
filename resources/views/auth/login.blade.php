@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', [ 'class' => 'bg_color'])
 
 @section('content')
 <div class="container">
@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
+                <div class="card-body">`
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 

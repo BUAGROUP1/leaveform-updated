@@ -50,6 +50,7 @@
                             <img src="/img/logo.jpg" style="height: 40px; width: 40px" alt="BUA" />
                         </a>
                         <span>BUA Leave App</span>
+                        <span>Admin</span>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
                                 <span class="hamburger-inner"></span>
@@ -93,7 +94,8 @@
                 <a href="/dashboard">
                     <img src="/img/logo.jpg" style="height: 40px; width: 40px" alt="BUA" />
                 </a>
-                <span class="ml-4">BUA Leave App</span>
+                <span class="ml-3">BUA Leave</span>
+                <span class="ml-3">Admin</span>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
@@ -132,18 +134,14 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">
-                            <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search"
-                                    placeholder="Search for datas &amp; reports..." />
-                                <button class="au-btn--submit" type="submit">
-                                    <i class="zmdi zmdi-search"></i>
-                                </button>
-                            </form>
+                            
+                            <div class="au-input au-input--xl" style="visibility: hidden;"></div>
+
                             <div class="header-button">
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="" alt="" />
+                                            <img src="/uploads/avatars/{{ auth()->user()->avatar }}" alt="" />
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn" href="#">{{ auth()->user()->name }}</a>
@@ -152,7 +150,7 @@
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="/img/default-avatar.png" alt="" />
+                                                        <img src="/uploads/avatars/{{ auth()->user()->avatar }}" alt="" />
                                                     </a>
                                                 </div>
                                                 <div class="content">

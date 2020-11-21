@@ -1,6 +1,8 @@
 @extends('users.layouts.users_master')
 
-
+@section('header')
+    <link rel="stylesheet" href="/css/leave_form.css">
+@endsection
 
 @section('content')
 <div class="panel-header panel-header-sm"></div>
@@ -191,17 +193,27 @@
             <p><span class="bold italic">Reliever to acknowledge receipt of handover note and accept
 						to cover for the staff proceeding on leave</span></p><br>
             <div class="dateover">
-                <input type="text" name=" decl_sig" id="decl_sig">
+                <div class="form-group">
+                    <label></label>
+                    <select name="decl_sig" class="form-control">
+                        <option value="pending">PENDING</option>
+                        <option value="approved">APPROVED</option>
+                    </select>
+                    <p class="ml-5">Date<input type="date" name="decl_date" id="decl_date"></p>
+                </div>
 
-                <p>Date<input type="date" name="decl_date" id="decl_date"></p>
+                
             </div>
 
             <p><span class="italic">Applicant's Signature</span></p>
             <hr>
 
+            <input type="hidden" value="pending" name="super_sig" id="super_sig" hidden>
+            <input type="hidden" value="pending" name=" hod_sig" id="hod_sig" hidden>
+            <input type="hidden" value="pending" name=" hr_sig" id="hr_sig" hidden>
         </section>
 
-        <section id="section-4" >
+        {{-- <section id="section-4" style="display: none" >
             <p><span class="bold">SECTION 3 - Approval</span></p>
             <p>I confirm that the applicant can proceed on his/her leave as stated and is entitled to be paid/ has already been paid leave allowance.</p>
             <div id="signature">
@@ -224,11 +236,7 @@
                         <input type="date" name=" hr_date" id="hr_date"></p>
                 </div><br>
             </div>
-
-
-
-
-        </section>
+        </section> --}}
 
         <section>
             <p  class="italic bold main-footer">NOTE: Staff who have requested for any form of leave must receive an Approved Memo (Section A) duly signed by Head of Human Resources, before proceeding on leave. On resumption of duty. Section B of the attached should duly completed by the staff and forwarded to the Human Resources Department  </p>

@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Images;
+use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+
 
 class DashboardController extends Controller
 {
@@ -17,8 +21,15 @@ class DashboardController extends Controller
         $theleaveform = theleaveformModel::all()->count();
 
         $val = 'approved';
-        $theleaveform2 = DB::table('theleaveform')->select('status')->where('status', 'like', '%' . $val . '%')->count();
-        $theleaveform3 = DB::table('theleaveform')->whereNull('status')->count();
+        $val2 = 'pending';
+        $theleaveform2 = theleaveformModel::where('decl_sig', 'like', '%' . $val . '%')
+                            ->where('super_sig', 'like', '%' . $val . '%')
+                            ->where('hod_sig', 'like', '%' . $val . '%')
+                            ->where('hr_sig', 'like', '%' . $val . '%')->count();
+        $theleaveform3 = theleaveformModel::orwhere('decl_sig', 'like', '%' . $val2 . '%')
+                            ->orwhere('super_sig', 'like', '%' . $val2 . '%')
+                            ->orwhere('hod_sig', 'like', '%' . $val2 . '%')
+                            ->orwhere('hr_sig', 'like', '%' . $val2 . '%')->count();
         $theleaveform4 = DB::table('users')->count();
 
         return view('admin.admin_dashboard')
@@ -79,8 +90,8 @@ class DashboardController extends Controller
 
     public function pending()
     {
-
-        $pending__view = theleaveformModel::whereNull('status')->get();
+        $val = 'pending';
+        $pending__view = theleaveformModel::where('status', 'like', '%' . $val . '%')->get();
 
         return view('admin.admin_pending')
             ->with('pending_view', $pending__view);
@@ -164,4 +175,25 @@ class DashboardController extends Controller
         return response()->json(['status' => 'deleted successfully']);
     }
     // end new function for deleting with ajax and sweet alert
+
+    public function insert_profile_image(Request $request)
+    {   
+       if($request->hasFile('avatar')){
+           $avatar = $request->file('avatar');
+           $filename = auth()->user()->name . '.' . $avatar->getClientOriginalExtension() ;
+           Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/avatars/' . $filename) );
+           $user = Auth::user();
+           $user->avatar =$filename;
+           $user->save();
+
+           Alert::success('Updated', 'Profile Picture is Successfully Updated');
+            return view('admin.admin_profile');
+       }
+      
+    }
+
+    public function admin_calendar_index()
+    {
+        return view('admin.admin_calendar');
+    }
 }

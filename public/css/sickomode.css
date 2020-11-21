@@ -15,6 +15,43 @@
 
 
 
+.wlc-links{
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    margin-top: 300px;
+}
+
+.wlc-button{
+    background-color: #0066ff;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    display: inline-block;
+}
+
+.wlc-button:hover{
+    background-color: white;
+    text-decoration: none;
+}
+
+.wlc-body{
+    background-color: #cccccc;
+    background-image: linear-gradient(red, yellow, green);
+    height: 200px;
+}
+
+.bg_color{
+    background-color: var(--bg_grey);
+}
+
+
+
 :root{
     --white-text: #fff;
+    --bg_grey: #232531;
 }

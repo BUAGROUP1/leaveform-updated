@@ -8,6 +8,10 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Response;
+use App\Images;
+use GuzzleHttp\Psr7\Request;
+use Image;
 
 class RegisterController extends Controller
 {
@@ -52,7 +56,11 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone' => ['required', 'string', 'min:8'],
+            'StaffID' => ['required', 'string', 'max:255'],
+            'usertype' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'], 
+
         ]);
     }
 
@@ -64,10 +72,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+     
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'phone' => $data['phone'],
+            'StaffID' => $data['StaffID'],
+            'usertype' => $data['usertype'],
             'password' => Hash::make($data['password']),
+            
+
         ]);
     }
 }

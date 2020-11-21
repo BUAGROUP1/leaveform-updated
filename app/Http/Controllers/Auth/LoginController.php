@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class LoginController extends Controller
@@ -31,15 +32,37 @@ class LoginController extends Controller
     // protected $redirectTo = RouteServiceProvider::HOME;
 
     protected function redirectTo()
-    {
+    {   
+        //admin login
+        if(Auth::user()->usertype == 'user')
+       {
+            toast('Logged IN','success');
+            return 'home';
+       }
        if(Auth::user()->usertype == 'admin')
        {
+            toast('Logged IN as Admin','success');
             return 'dashboard';
        }
-       else
+       // 
+       if(Auth::user()->usertype == 'supervisor')
        {
-            return '/home';
+            toast('Logged IN as Supervisor','success');
+            return 'supervisor_dashboard';
        }
+
+       if(Auth::user()->usertype == 'hr')
+       {
+            toast('Logged IN as HR','success');
+            return 'hr_dashboard';
+       }
+
+       if(Auth::user()->usertype == 'hod')
+       {
+            toast('Logged IN as HOD','success');
+            return 'hod_dashboard';
+       }      
+        
     }
 
     /**
