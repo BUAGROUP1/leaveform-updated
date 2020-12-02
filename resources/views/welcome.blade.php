@@ -32,19 +32,6 @@
         <div class="col-11 col-xl-2"> 
         <h1 class="mb-0"><img src="/img/logo.jpg" style="height: 40px; width: 40px;"/><a href="/" class="text-white h2 mb-0">BUA<span class="text-primary">Leave</span> </a></h1>
         </div>
-        {{-- <div class="col-12 col-md-10 d-none d-xl-block">
-        <nav class="site-navigation position-relative text-right" role="navigation">
-        <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
-        <li class="active"><a href="index-2.html">Home</a></li>
-        <li><a href="about.html">aaaaaa</a></li>
-        <li><a href="speakers.html">bbbbbb</a></li>
-        <li><a href="news.html">ccccccc</a></li>
-        <li><a href="contact.html">dddddd</a></li>
-        <li class="cta"><a href="buy-tickets.html">eeeeeee</a></li>
-        </ul>
-        </nav>
-        </div> --}}
-        <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
         </div>
         </div>
         </div>
