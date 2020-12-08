@@ -15,6 +15,8 @@ use Intervention\Image\Facades\Image;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\sendSupervisor;
 
 
 class SupervisorController extends Controller
@@ -104,8 +106,15 @@ class SupervisorController extends Controller
         $p_update->super_sig = $request->input('super_sig');
         $p_update->update();
 
-        Alert::success('Updated', 'The Form is Successfully Updated');
-        return redirect('/supervisor_pending');
+        $data = array(
+            'name' => auth()->user()->name ,
+            'usersName' => $request->name
+        );
+        Mail::to('nwangumav@outlook.com')->send(new sendSupervisor($data));
+
+        Alert::success('Updated', 'The Form is Successfully Approved');
+        return redirect('/supervisor_pending')
+            ->with('success', 'Email also sent to HOD');
     }
 
     public function s_pending_delete($id)

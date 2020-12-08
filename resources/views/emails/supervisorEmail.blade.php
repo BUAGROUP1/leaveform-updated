@@ -1,3 +1,3 @@
 {{-- supervisor --}}
-<p>This {{ $data['name'] }} Just applied for leave</p>
+<p>This supervisor {{ $data['name'] }} just approved for leave for {{ $data['usersName'] }}</p>
 <p>Please check dashboard for approval</p>

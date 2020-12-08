@@ -9,6 +9,23 @@ Supervisor Pending
     <div class="card-body">
         <h3 class="title-5 m-b-35">Pending Forms</h3>
 
+        @if( count($errors) > 0 )
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss = "alert">X</button>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">X</button>
+                <strong>{{ $message }}</strong>
+            </div>
+        @endif
         <div class="table-responsive">
 
             <table id="datatable" class="table  table-striped table-data2">
