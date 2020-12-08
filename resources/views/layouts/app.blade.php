@@ -99,9 +99,9 @@
                         @endguest
 
 
-                        <a class="dropdown-item mt-1" href="{{ route('logout') }}"
+                    <a class="mt-2 ml-md-2" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
-                                      document.getElementById('logout-form').submit();">
+                                      document.getElementById('logout-form').submit();" style="color: rgba(0,0,0,.5);">
                          {{ __('Logout') }}
                      </a>
 

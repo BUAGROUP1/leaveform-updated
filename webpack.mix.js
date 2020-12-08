@@ -15,4 +15,4 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
 
 
-mix.browserSync('localhost:8000');    
+mix.browserSync({proxy:'localhost:8000', notify: false});    

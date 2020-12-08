@@ -8,8 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
-
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\sendUser;
 class leaveformController extends Controller
 {
     public function index()
@@ -53,8 +53,14 @@ class leaveformController extends Controller
         $user->hr_date= $req->hr_date;
 
         $user->save();
-        Alert::success('Submitted', 'The Form is Successfully Submitted');
 
+        $data = array(
+            'name' => auth()->user()->name
+        );
+        Mail::to('nwangumav@outlook.com')->send(new sendUser($data));
+
+
+        Alert::success('Submitted', 'The Form is Successfully Submitted');
         return redirect('/home');
     }
 
