@@ -208,9 +208,9 @@
             <p><span class="italic">Applicant's Signature</span></p>
             <hr>
 
-            <input type="hidden" value="pending" name="super_sig" id="super_sig" hidden>
-            <input type="hidden" value="pending" name=" hod_sig" id="hod_sig" hidden>
-            <input type="hidden" value="pending" name=" hr_sig" id="hr_sig" hidden>
+            <input type="hidden" value="pending" name="super_sig" id="super_sig" hidden />
+            <input type="hidden" value="pending" name=" hod_sig" id="hod_sig" hidden />
+            <input type="hidden" value="pending" name=" hr_sig" id="hr_sig" hidden />
         </section>
 
         {{-- <section id="section-4" style="display: none" >

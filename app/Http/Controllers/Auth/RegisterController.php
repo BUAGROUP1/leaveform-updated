@@ -59,7 +59,8 @@ class RegisterController extends Controller
             'phone' => ['required', 'string', 'min:8'],
             'StaffID' => ['required', 'string', 'max:255'],
             'usertype' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'], 
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'department' => ['required'], 
 
         ]);
     }
@@ -82,7 +83,7 @@ class RegisterController extends Controller
             'StaffID' => $data['StaffID'],
             'usertype' => $data['usertype'],
             'password' => Hash::make($data['password']),
-            
+            'department' => $data['department'],
 
         ]);
     }

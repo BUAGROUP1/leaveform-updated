@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\TheUsers;
 
 use Auth;
+use App\Models\User;
 use App\Models\theleaveformModel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,8 +11,11 @@ use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\sendUser;
+
 class leaveformController extends Controller
+ 
 {
+
     public function index()
     {
         return view('users.leaveform-page');
@@ -51,13 +55,21 @@ class leaveformController extends Controller
         $user->hod_date= $req->hod_date;
         $user->hr_sig= $req->hr_sig;
         $user->hr_date= $req->hr_date;
-
         $user->save();
 
         $data = array(
-            'name' => auth()->user()->name
+            'name' => $req->name
         );
-        Mail::to('nwangumav@outlook.com')->send(new sendUser($data));
+
+        $val = 'supervisor';
+        $val2 = auth()->user()->department;
+
+        $abc = User::where('usertype', 'like', '%' . $val . '%')
+                            ->where('department', 'like', '%' . $val2 . '%')
+                            ->get(['email']); 
+                         
+        foreach ( $abc as $xyz ) {     
+        Mail::to("$xyz->email")->send(new sendUser($data)); }
 
 
         Alert::success('Submitted', 'The Form is Successfully Submitted');

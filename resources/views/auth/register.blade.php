@@ -55,6 +55,25 @@
                         </div>
                         {{-- end phone --}}
 
+                        <div class="form-group row">
+                            <label for="department" class="col-md-4 col-form-label text-md-right">{{ __('Departments') }}</label>
+
+                            <div class="col-md-6">           
+                                    <select name="department" id="department" class="form-control">
+                                        <option></option>
+                                        <option value="IT">IT</option>
+                                        <option value="Coporate-Communications">Coporate Communications</option>
+                                        <option value="Human-Resources">Human Resources</option>
+                                    </select>  
+                                    
+                                    @error('department')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                            </div>
+                        </div>
+
                         {{-- input staff id --}}
                         <div class="form-group row">
                             <label for="StaffID" class="col-md-4 col-form-label text-md-right">{{ __('Staff ID') }}</label>

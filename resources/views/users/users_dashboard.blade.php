@@ -79,7 +79,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
+            {{-- <div class="col-md-6 col-lg-3">
                 <div class="statistic__item statistic__item--red">
                     <h2 class="number">{{ $theleaveform4 }}</h2>
                     <span class="desc">Users</span>
@@ -87,7 +87,7 @@
                         <i class="zmdi zmdi-account-o"></i>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>

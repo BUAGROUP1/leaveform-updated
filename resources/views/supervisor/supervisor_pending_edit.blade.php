@@ -267,6 +267,8 @@ Pending Forms Edit
                                             <input type="date" name=" hr_date" id="hr_date"
                                                 value="{{$pending_edit->hr_date}}"></p>
                                     </div><br>
+                                <input type="text" value="{{ auth()->user()->name }}" id="super_name" name="super_name" hidden />
+                                <input type="text" value="{{ auth()->user()->email }}" id="super_email" name="super_email" hidden />
                                 </div>
 
 

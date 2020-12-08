@@ -30,9 +30,18 @@ class sendUser extends Mailable
      */
     public function build()
     {   
-        return $this->from('nwangumav@gmail.com')
+        return $this
         ->subject('A User just requested for leave')
         ->view('emails.userEmail')
         ->with('data', $this->data);
     }
 }
+
+
+// public function build()
+// {   
+//     return $this->from('nwangumav@gmail.com')
+//     ->subject('A User just requested for leave')
+//     ->view('emails.userEmail')
+//     ->with('data', $this->data);
+// }

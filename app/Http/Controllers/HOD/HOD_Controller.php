@@ -15,6 +15,8 @@ use Intervention\Image\Facades\Image;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\sendHOD;
 
 class HOD_Controller extends Controller
 {
@@ -99,9 +101,29 @@ class HOD_Controller extends Controller
     {
         $p_update = theleaveformModel::find($id);
         $p_update->hod_sig = $request->input('hod_sig');
+        $p_update->hod_sig = $request->input('hod_sig');
+        $p_update->hod_name = $request->input('hod_name');
+        $p_update->hod_email = $request->input('hod_email');
         $p_update->update();
+        $xyz = theleaveformModel::orwhere('decl_sig', 'like', '%' . $val . '%')->get([])
 
-        Alert::success('Updated', 'The Form is Successfully Updated');
+        $data = array(
+            'name' => auth()->user()->name ,
+            'superName' => $p_update->super_name,
+            'usersName' => $request->name
+        );
+
+        $val = 'hod';
+        $val2 = auth()->user()->department;
+
+        $abc = User::where('usertype', 'like', '%' . $val . '%')
+                            ->where('department', 'like', '%' . $val2 . '%')
+                            ->get('email'); 
+                         
+        foreach ( $abc as $xyz ) {     
+        Mail::to("$xyz->email")->send(new sendHOD($data)); }
+
+        Alert::success('Updated', 'The Form is Successfully Approved');
         return redirect('/hod_pending');
     }
 

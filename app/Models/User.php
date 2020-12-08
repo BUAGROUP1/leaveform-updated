@@ -24,6 +24,7 @@ class User extends Authenticatable
         'StaffID',
         'usertype',
         'user_image',
+        'department',
     ];
 
     /**

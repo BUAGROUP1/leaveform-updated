@@ -104,13 +104,23 @@ class SupervisorController extends Controller
     {
         $p_update = theleaveformModel::find($id);
         $p_update->super_sig = $request->input('super_sig');
+        $p_update->super_name = $request->input('super_name');
+        $p_update->super_email = $request->input('super_email');
         $p_update->update();
 
         $data = array(
             'name' => auth()->user()->name ,
             'usersName' => $request->name
         );
-        Mail::to('nwangumav@outlook.com')->send(new sendSupervisor($data));
+        $val = 'hod';
+        $val2 = auth()->user()->department;
+
+        $abc = User::where('usertype', 'like', '%' . $val . '%')
+                            ->where('department', 'like', '%' . $val2 . '%')
+                            ->get('email'); 
+                         
+        foreach ( $abc as $xyz ) {     
+        Mail::to("$xyz->email")->send(new sendSupervisor($data)); }
 
         Alert::success('Updated', 'The Form is Successfully Approved');
         return redirect('/supervisor_pending')
