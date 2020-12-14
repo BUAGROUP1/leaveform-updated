@@ -15,11 +15,13 @@ use Intervention\Image\Facades\Image;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\sendHR;
 
 class HR_Controller extends Controller
 {
     public function index()
-    {   
+    {
         $theleaveform = theleaveformModel::all()->count();
 
         $val = 'approved';
@@ -62,7 +64,7 @@ class HR_Controller extends Controller
     }
 
     public function insert_profile_image(Request $request)
-    {   
+    {
        if($request->hasFile('avatar')){
            $avatar = $request->file('avatar');
            $filename = auth()->user()->name . '.' . $avatar->getClientOriginalExtension() ;
@@ -74,7 +76,7 @@ class HR_Controller extends Controller
            Alert::success('Updated', 'Profile Picture is Successfully Updated');
             return view('hr.hr_profile');
        }
-      
+
     }
 
     public function pending()
@@ -99,6 +101,35 @@ class HR_Controller extends Controller
     {
         $p_update = theleaveformModel::find($id);
         $p_update->hr_sig = $request->input('hr_sig');
+        $p_update->hr_name = $request->input('hr_name');
+        $p_update->hr_email = $request->input('hr_email');
+
+
+        $data = array(
+            'name' => auth()->user()->name ,
+            'usersName' => $request->name,
+            'usersEmail' => $request->email,
+            'superName' => $request->super_name,
+            'superEmail' => $request->super_email,
+            'hodName' => $request->hod_name,
+            'hodEmail' => $request->hod_email,
+        );
+
+        $abc = theleaveformModel::find($id);
+
+        $hostname = "smtp.google.com";
+        $port = 465;
+
+        $con = @fsockopen($hostname, $port);
+        if(!$con){
+            Alert::error('Email not Sent', 'Please check your internet connection');
+            return redirect('/hr_pending');
+        }
+        else{
+            foreach( [ $abc['email'] , $abc['super_email'], $abc['hod_email'] ] as $ijk ){
+            Mail::to("$ijk")->queue(new sendHR($data));  }
+        }
+
         $p_update->update();
 
         Alert::success('Updated', 'The Form is Successfully Updated');

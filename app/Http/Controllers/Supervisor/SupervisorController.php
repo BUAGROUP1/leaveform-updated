@@ -22,7 +22,7 @@ use App\Mail\sendSupervisor;
 class SupervisorController extends Controller
 {
     public function index()
-    {   
+    {
         $theleaveform = theleaveformModel::all()->count();
 
         $val = 'approved';
@@ -67,7 +67,7 @@ class SupervisorController extends Controller
     }
 
     public function insert_profile_image(Request $request)
-    {   
+    {
        if($request->hasFile('avatar')){
            $avatar = $request->file('avatar');
            $filename = auth()->user()->name . '.' . $avatar->getClientOriginalExtension() ;
@@ -79,7 +79,7 @@ class SupervisorController extends Controller
            Alert::success('Updated', 'Profile Picture is Successfully Updated');
             return view('supervisor.supervisor_profile');
        }
-      
+
     }
 
     public function pending()
@@ -109,7 +109,7 @@ class SupervisorController extends Controller
         $p_update->update();
 
         $data = array(
-            'name' => auth()->user()->name ,
+            'name' => auth()->user()->name,
             'usersName' => $request->name
         );
         $val = 'hod';
@@ -117,10 +117,20 @@ class SupervisorController extends Controller
 
         $abc = User::where('usertype', 'like', '%' . $val . '%')
                             ->where('department', 'like', '%' . $val2 . '%')
-                            ->get('email'); 
-                         
-        foreach ( $abc as $xyz ) {     
-        Mail::to("$xyz->email")->send(new sendSupervisor($data)); }
+                            ->get('email');
+
+        $hostname = "smtp.google.com";
+        $port = 465;
+
+        $con = @fsockopen($hostname, $port);
+        if(!$con){
+            Alert::error('Email not Sent', 'Please check your internet connection');
+            return redirect('/supervisor_pending');
+        }
+        else{
+            foreach ( $abc as $xyz ) {
+            Mail::to("$xyz->email")->send(new sendSupervisor($data)); }
+        }
 
         Alert::success('Updated', 'The Form is Successfully Approved');
         return redirect('/supervisor_pending')

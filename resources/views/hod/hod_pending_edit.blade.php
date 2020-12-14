@@ -267,6 +267,8 @@ Pending Edit
                                                 value="{{$pending_edit->hr_date}}"></p>
                                     </div><br>
                                 </div>
+                            <input type="text" value="{{ $pending_edit->super_name }}" name="super_name" id="super_name" hidden />
+                            <input type="text" value="{{ $pending_edit->super_email }}" name="super_email" id="super_email" hidden />   
                             <input type="text" value="{{ auth()->user()->name }}" name="hod_name" id="hod_name" hidden />
                             <input type="text" value="{{ auth()->user()->email }}" name="hod_email" id="hod_email" hidden />
 

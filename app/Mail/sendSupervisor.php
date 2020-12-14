@@ -30,7 +30,7 @@ class sendSupervisor extends Mailable
      */
     public function build()
     {
-        return $this->from('nwangumav@gmail.com')
+        return $this
         ->subject('A Supervisor just approved request for leave')
         ->view('emails.supervisorEmail')
         ->with('data', $this->data);

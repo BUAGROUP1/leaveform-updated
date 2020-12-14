@@ -21,7 +21,7 @@ use App\Mail\sendHOD;
 class HOD_Controller extends Controller
 {
     public function index()
-    {   
+    {
         $theleaveform = theleaveformModel::all()->count();
 
         $val = 'approved';
@@ -64,7 +64,7 @@ class HOD_Controller extends Controller
     }
 
     public function insert_profile_image(Request $request)
-    {   
+    {
        if($request->hasFile('avatar')){
            $avatar = $request->file('avatar');
            $filename = auth()->user()->name . '.' . $avatar->getClientOriginalExtension() ;
@@ -76,11 +76,11 @@ class HOD_Controller extends Controller
            Alert::success('Updated', 'Profile Picture is Successfully Updated');
             return view('hod.hod_profile');
        }
-      
+
     }
 
     public function pending()
-    {   
+    {
         $val = 'pending';
         $pending__view = theleaveformModel::orwhere('decl_sig', 'like', '%' . $val . '%')
         ->orwhere('super_sig', 'like', '%' . $val . '%')
@@ -99,29 +99,37 @@ class HOD_Controller extends Controller
 
     public function pending_update(Request $request, $id)
     {
+
         $p_update = theleaveformModel::find($id);
-        $p_update->hod_sig = $request->input('hod_sig');
         $p_update->hod_sig = $request->input('hod_sig');
         $p_update->hod_name = $request->input('hod_name');
         $p_update->hod_email = $request->input('hod_email');
         $p_update->update();
-        $xyz = theleaveformModel::orwhere('decl_sig', 'like', '%' . $val . '%')->get([])
 
         $data = array(
-            'name' => auth()->user()->name ,
-            'superName' => $p_update->super_name,
+            'name' => auth()->user()->name,
+            'superName' => $request->super_name,
+            'superEmail' => $request->super_email,
             'usersName' => $request->name
         );
 
-        $val = 'hod';
-        $val2 = auth()->user()->department;
+        $val = 'hr';
 
         $abc = User::where('usertype', 'like', '%' . $val . '%')
-                            ->where('department', 'like', '%' . $val2 . '%')
-                            ->get('email'); 
-                         
-        foreach ( $abc as $xyz ) {     
-        Mail::to("$xyz->email")->send(new sendHOD($data)); }
+                            ->get('email');
+
+        $hostname = "smtp.google.com";
+        $port = 465;
+
+        $con = @fsockopen($hostname, $port);
+        if(!$con){
+            Alert::error('Email not Sent', 'Please check your internet connection');
+            return redirect('/hod_pending');
+        }
+        else{
+            foreach ( $abc as $xyz ) {
+            Mail::to("$xyz->email")->send(new sendHOD($data)); }
+        }
 
         Alert::success('Updated', 'The Form is Successfully Approved');
         return redirect('/hod_pending');

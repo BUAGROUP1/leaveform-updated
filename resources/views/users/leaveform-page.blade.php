@@ -22,7 +22,7 @@
     <link rel="icon" type="image/x-icon" sizes="32x32" href="favicon.png">
 </head>
 <body>
-
+<div class="desktop moblie">
 <main class="container">
     <form class="form-container" method="POST" action="submit_leave">
         @csrf
@@ -36,7 +36,7 @@
                         P.O Box 70106 Victoria Island, Lagos,Nigeria<br>
                         <span class="bold">T. </span>+234 1 461 0669 <span class="bold">E. </span>info@buagroup.com
                     </p>
-                </div>
+                </div><br class="m-hidden"/>
                 <div id="leave">
                     <h3><span class="bold">LEAVE REQUEST FORM</span></h3>
                     <hr>
@@ -46,10 +46,10 @@
                     <p><span class="italic bold">VERY IMPORTANT</span></p>
                     <p class="italic">1. Staff are expected to give a<span class="bold"> NOTICE OF ONE WEEK </span>before commencement of annual leave</p>
                     <p class="italic">2. Staff should not proceed on leave<span class="bold"> UNTIL</span>they have received Approval Coupon from HR Department</p>
-                </div>
+                </div><br class="m-hidden"/>
                 <div id="date">
-                    <input type="date" name="date" >
-                </div>
+                    <input type="date" class="numValues" name="date" >
+                </div><br class="m-hidden"/><br class="m-hidden"/>
             </div>
         </header>
 
@@ -64,22 +64,22 @@
                 <li>
                     <div class="form-group c1">
                         <label for="name">Name</label>
-                        <input type="text" name="name" id="name">
+                        <input type="text" class="maxWidth" name="name" id="name">
                     </div>
 
                     <div class="form-group c2">
                         <label for="name">SAP No.</label>
-                        <input type="text" name="sapno" id="sapno">
+                        <input type="text" class="numValues maxWidth" name="sapno" id="sapno">
                     </div>
 
                     <div class="form-group c3">
                         <label for="cadre">Cadre/Designation</label>
-                        <input type="text" name="cadre" id="cadre">
+                        <input type="text" class="maxWidth" name="cadre" id="cadre">
                     </div>
 
                     <div class="form-group c4">
                         <label for="department">Department</label>
-                        <input type="text" name="department" id="department">
+                        <input type="text" class="maxWidth" name="department" id="department">
                     </div>
 
                     <div class="form-group c5">
@@ -100,7 +100,7 @@
             <ul>
                 <li>
 
-                    <select id="leavetype" name="leavetype">
+                    <select id="leavetype" name="leavetype" class="leavetype">
                         <option value=""></option>
                         <option value="annual">Annual Leave</option>
                         <option value="maternity">Maternity</option>
@@ -120,24 +120,24 @@
                 <li>
 
                     <label for="leaveyear">Leave Year</label>
-                    <input type="number" name="leaveyear" id="leaveyear" input style="width:70px">
+                    <input type="number" class="numValues" name="leaveyear" id="leaveyear" input style="width:70px">
 
 
 
                     <label for="entitledleave">Annual Leave Days entitled</label>
-                    <input type="number" name="entitledleave" id="entitledleave"input style="width:70px"  >
+                    <input type="number" class="numValues" name="entitledleave" id="entitledleave"input style="width:70px"  >
 
 
 
 
                     <label for="daystaken">No. of Days already taken</label>
-                    <input type="number" name="daystaken" id="daystaken"input style="width:70px" >
+                    <input type="number" class="numValues" name="daystaken" id="daystaken"input style="width:70px" >
 
 
 
 
                     <label for="totdaysvac">Total Days this Vacation</label>
-                    <input type="number" name="totdaysvac" id="totdaysvac"input style="width:70px" >
+                    <input type="number" class="numValues" name="totdaysvac" id="totdaysvac"input style="width:70px" >
 
 
                 </li>
@@ -146,40 +146,40 @@
             <div class="Holidays">
                 <div class="outstand">
                     <p>Outstanding No. of Days after this Vacation</p>
-                    <input type="number" name="outstanding" id="outstanding" input style="width:70px">
+                    <input type="number" class="numValues" name="outstanding" id="outstanding" input style="width:70px">
 
                 </div>
                 <p>Public Holidays included(Give dates)</p>
-                <input type="text" name="publicholidays" id="publicholidays">
+                <input type="text" class="numValues maxWidth" name="publicholidays" id="publicholidays">
             </div>
 
 
 
-            <div id="startleave">
+            <div id="startleave"><br class="m-hidden"/>
                 <div>
-                    <label for="daystaken">Leave Commences</label>
-                    <input type="date" name="lcommences" id="lcommences">   
-                </div>
+                    <label for="daystaken">Leave Commences</label> <br class="m-hidden"/>
+                    <input type="date" class="numValues" name="lcommences" id="lcommences">
+                </div><br class="m-hidden"/>
 
                 <div>
-                    <label for="daystaken">Leave Ends</label>
-                    <input type="date" name="lends" id="lends">
-                </div><br>
+                    <label for="daystaken">Leave Ends</label> <br class="m-hidden"/>
+                    <input type="date" class="numValues" name="lends" id="lends">
+                </div><br class="m-hidden"/>
 
                 <div>
-                    <label for="daystaken">Resumption Date</label>
-                    <input type="date" name="rdate" id="rdate">
+                    <label for="daystaken">Resumption Date</label> <br class="m-hidden"/>
+                    <input type="date" class="numValues" name="rdate" id="rdate">
                 </div>
-            </div>
+            </div><br class="m-hidden"/>
 
 
             <div id="contact">
-                <p>Contact Address<span class="little"> (while on leave)</span><input type="text" name="contact_add" id="contact_add">
+                <p>Contact Address<span class="little"> (while on leave)</span><input type="text" class="maxWidth numValues" name="contact_add" id="contact_add">
 
-                </p>
-                <p>Contact Phone No.<input type="text" name="phone" id="phone"></p>
+                </p> <br/>
+                <p>Contact Phone No.<input type="text" class="maxWidth numValues" name="phone" id="phone"></p><br/>
 
-                <P class=>Contact E-mail </P><input type="email" name="email" id="email" input style="width:500px">
+                <P class=>Contact E-mail </P><input type="email" class="maxWidth numValues" name="email" id="email" />
             </div>
         </section>
         <hr class="sectionend">
@@ -194,18 +194,17 @@
 						to cover for the staff proceeding on leave</span></p><br>
             <div class="dateover">
                 <div class="form-group">
-                    <label></label>
+                    <p><span class="italic" style="margin-right: 30px">Applicant's Signature</span></p>
                     <select name="decl_sig" class="form-control">
                         <option value="pending">PENDING</option>
                         <option value="approved">APPROVED</option>
                     </select>
-                    <p class="ml-5">Date<input type="date" name="decl_date" id="decl_date"></p>
-                </div>
 
-                
+                    <p class="ml-5 mt-md-0 mt-3">Date<input type="date" class="numValues ml-2 ml-md-0" name="decl_date" id="decl_date"></p>
+                </div>
             </div>
 
-            <p><span class="italic">Applicant's Signature</span></p>
+
             <hr>
 
             <input type="hidden" value="pending" name="super_sig" id="super_sig" hidden />
@@ -248,6 +247,7 @@
 
     </form>
 </main>
+</div>
 
 
 
