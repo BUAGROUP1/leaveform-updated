@@ -1,8 +1,10 @@
-@extends('supervisor.layouts.supervisor_master')
+@extends('hr.layouts.hr_master')
 
 @section('title')
-Supervisor Pending
+HR pending
 @endsection
+
+{{-- Deleting using jquery, ajax and sweet alert  --}}
 
 @section('content')
 
@@ -10,23 +12,6 @@ Supervisor Pending
     <div class="card-body">
         <h3 class="title-5 m-b-35">Pending Forms</h3>
 
-        @if( count($errors) > 0 )
-            <div class="alert alert-danger">
-                <button type="button" class="close" data-dismiss = "alert">X</button>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success alert-block">
-                <button type="button" class="close" data-dismiss="alert">X</button>
-                <strong>{{ $message }}</strong>
-            </div>
-        @endif
         <div class="table-responsive">
 
             <table id="datatable" class="table  table-striped table-data2">
@@ -88,18 +73,18 @@ Supervisor Pending
                                 {{-- <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
                                     <i class="zmdi zmdi-mail-send"></i>
                                 </button> --}}
-                                @if ($item->decl_sig == 'approved')
-                                <a href="{{url('s_pending_edit/'.$item->id)}}" class="mr-3"><button class="item" data-toggle="tooltip"
-                                        data-placement="top" title="Edit">
-                                        <i class="zmdi zmdi-edit"></i>
-                                    </button></a>
+                                @if ($item->hod_sig == 'approved')
+                                <a href="{{url('hr_pending_edit/'.$item->id)}}" class="mr-3"><button class="item" data-toggle="tooltip"
+                                    data-placement="top" title="Edit">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </button></a>
                                 @else
                                     <div>
                                         <i class="fa fa-ban ml-2"></i>
-                                        <span>User</span>
+                                        <span>HOD</span>
                                     </div>
                                 @endif
-                                {{-- <button class="item s_pending_delete" data-toggle="tooltip" data-placement="top"
+                                {{-- <button class="item hr_pending_delete" data-toggle="tooltip" data-placement="top"
                                     title="Delete">
                                     <i class="zmdi zmdi-delete"></i>
                                 </button> --}}
@@ -120,7 +105,6 @@ Supervisor Pending
 @endsection
 
 @section('scripts')
-
 <script>
     /*confirm and delete with id or value closest to the button*/
 
@@ -132,7 +116,7 @@ $(document).ready(function () {
         }
     });
 
-    $('.s_pending_delete').click(function (e) {
+    $('.hr_pending_delete').click(function (e) {
         e.preventDefault();
 
         /*to get the closet value or ID to the delete button*/
@@ -156,7 +140,7 @@ $(document).ready(function () {
 
                     $.ajax({
                         type: "DELETE",
-                        url: '/s_pending_delete/'+delete_xyz,
+                        url: '/hr_pending_delete/'+delete_xyz,
                         data: data,
                         success: function (response) {
 
@@ -183,3 +167,7 @@ $(document).ready(function () {
     });
 </script>
 @endsection
+
+
+
+

@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="/css/dataTables.min.css">
 
     <link rel="stylesheet" href="/css/sickomode.css">
-    
+
     @yield('header')
 </head>
 
@@ -46,7 +46,7 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a href="#">
+                        <a href="hr_dashboard">
                             <img src="/img/logo.jpg" style="height: 40px; width: 40px" alt="BUA" />
                         </a>
                         <span>BUA Leave</span>
@@ -62,11 +62,11 @@
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
-                        
+
                         <li class="{{ Request::is('hr_dashboard*') ? 'active' : '' }}">
                             <a href="/hr_dashboard">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                        </li>         
+                        </li>
                         <li class="{{ Request::is('hr_approved*') ? 'active' : '' }}">
                             <a href="/hr_approved">
                                 <i class="fas fa-check-circle"></i>Approved Forms</a>
@@ -74,6 +74,14 @@
                         <li class="{{ Request::is('hr_pending*') ? 'active' : '' }}">
                             <a href="/hr_pending">
                                 <i class="fas fa-exclamation"></i>Pending forms</a>
+                        </li>
+                        <li class="{{ Request::is('hr_leaveform*') ? 'active' : '' }}">
+                            <a href="/hr_leaveform">
+                                <i class="fas fa-list-alt"></i>Leaveform</a>
+                        </li>
+                        <li class="{{ Request::is('hr_status*') ? 'active' : '' }}">
+                            <a href="/hr_status">
+                                <i class="fas fa-clock-o"></i>My Status</a>
                         </li>
                         <li class="{{ Request::is('hr_calendar*') ? 'active' : '' }}">
                             <a href="/hr_calendar">
@@ -88,7 +96,7 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="/dashboard">
+                <a href="/hr_dashboard">
                     <img src="/img/logo.jpg" style="height: 40px; width: 40px" alt="BUA" />
                 </a>
                 <span class="ml-3">BUA Leave</span>
@@ -97,11 +105,10 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        
                         <li class="{{ Request::is('hr_dashboard*') ? 'active' : '' }}">
                             <a href="/hr_dashboard">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                        </li>         
+                        </li>
                         <li class="{{ Request::is('hr_approved*') ? 'active' : '' }}">
                             <a href="/hr_approved">
                                 <i class="fas fa-check-circle"></i>Approved Forms</a>
@@ -109,6 +116,14 @@
                         <li class="{{ Request::is('hr_pending*') ? 'active' : '' }}">
                             <a href="/hr_pending">
                                 <i class="fas fa-exclamation"></i>Pending forms</a>
+                        </li>
+                        <li class="{{ Request::is('hr_leaveform*') ? 'active' : '' }}">
+                            <a href="/hr_leaveform">
+                                <i class="fas fa-list-alt"></i>Leaveform</a>
+                        </li>
+                        <li class="{{ Request::is('hr_status*') ? 'active' : '' }}">
+                            <a href="/hr_status">
+                                <i class="fas fa-clock-o"></i>My Status</a>
                         </li>
                         <li class="{{ Request::is('hr_calendar*') ? 'active' : '' }}">
                             <a href="/hr_calendar">
@@ -156,7 +171,7 @@
                                                     <a href="/hr_profile">
                                                         <i class="zmdi zmdi-account"></i>Profile</a>
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="account-dropdown__footer">
                                                 <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -180,7 +195,7 @@
             </header>
             <!-- HEADER DESKTOP-->
              <!-- END PAGE CONTAINER-->
-             
+
              <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
@@ -188,13 +203,13 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
     </div>
 
 
-    
+
 
     <!-- Jquery JS-->
     <script src="/vendor/jquery-3.2.1.min.js"></script>

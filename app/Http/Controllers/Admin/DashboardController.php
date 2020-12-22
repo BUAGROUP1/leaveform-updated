@@ -132,7 +132,7 @@ class DashboardController extends Controller
             ->with('approved_edit', $approved_edit);
     }
 
-    //old function for deleting 
+    //old function for deleting
     public function approved_delete($id)
     {
         $a_delete = theleaveformModel::findOrFail($id);
@@ -177,10 +177,14 @@ class DashboardController extends Controller
     // end new function for deleting with ajax and sweet alert
 
     public function insert_profile_image(Request $request)
-    {   
+    {
        if($request->hasFile('avatar')){
            $avatar = $request->file('avatar');
-           $filename = auth()->user()->name . '.' . $avatar->getClientOriginalExtension() ;
+           $filename = auth()->user()->name . '.' . $avatar->getClientOriginalExtension();
+/* me */   if($avatar->getClientOriginalExtension() !== 'jpg'){
+            Alert::error('File extension not supported', 'Use only .jpg');
+            return view('admin.admin_profile');
+        }
            Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/avatars/' . $filename) );
            $user = Auth::user();
            $user->avatar =$filename;
@@ -189,7 +193,7 @@ class DashboardController extends Controller
            Alert::success('Updated', 'Profile Picture is Successfully Updated');
             return view('admin.admin_profile');
        }
-      
+
     }
 
     public function admin_calendar_index()

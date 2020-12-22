@@ -70,9 +70,16 @@ HOD Approved
                                 {{-- <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
                                     <i class="zmdi zmdi-mail-send"></i>
                                 </button> --}}
+                                @if ($item->super_sig == 'approved')
                                 <a href="{{url('hod_approved_edit/'.$item->id)}}" class="mr-2"><button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                     <i class="zmdi zmdi-edit"></i>
                                 </button></a>
+                                @else
+                                    <div>
+                                        <i class="fa fa-times-circle" style="margin-left: 28px"></i>
+                                        <span>Supervisor</span>
+                                    </div>
+                                @endif
                                 {{-- <button class="item hod_approved_delete" data-toggle="tooltip" data-placement="top" title="Delete">
                                     <i class="zmdi zmdi-delete"></i>
                                 </button> --}}
@@ -93,7 +100,7 @@ HOD Approved
 @endsection
 
 @section('scripts')
-    
+
 <script>
     /*confirm and delete with id or value closest to the button*/
 

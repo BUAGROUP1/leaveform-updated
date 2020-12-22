@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>Welcome</title>
+    <link rel="icon" type="image/favicon" href="/img/logo.jpg">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -29,7 +30,7 @@
         <header class="site-navbar py-3" role="banner">
         <div class="container-fluid">
         <div class="row align-items-center">
-        <div class="col-11 col-xl-2"> 
+        <div class="col-11 col-xl-2">
         <h1 class="mb-0"><img src="/img/logo.jpg" style="height: 40px; width: 40px;"/><a href="/" class="text-white h2 mb-0">BUA<span class="text-primary">Leave</span> </a></h1>
         </div>
         </div>
@@ -44,7 +45,7 @@
         <h1 class="d-block mb-4">BUA Leave </h1>
         <span class="d-block mb-5 caption"></span>
         @if (Route::has('login'))
-                
+
             @auth
                 <a href="{{ url('/home') }}" class="btn-custom"><span>Home</span></a>
             @else
@@ -54,14 +55,14 @@
                     <a href="{{ route('register') }}" class="btn-custom"><span>Register</span></a>
                 @endif
             @endif
-                
+
         @endif
         </div>
         </div>
         </div>
         </div>
-        
-        
+
+
         </div>
 
 <!-- Bootstrap JS-->

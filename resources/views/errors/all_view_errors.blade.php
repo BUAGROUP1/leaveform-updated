@@ -159,15 +159,14 @@
                 @break
             @case('hr')
                 <a href="/hr_dashboard"  title="Return to dashboard">Dashboard</a>
-                @break 
+                @break
             @case('supervisor')
                 <a href="/supervisor_dashboard"  title="Return to dashboard">Dashboard</a>
                 @break       
-
             @default
                 please log out
         @endswitch
-       
+
 
         <div>
             <a href="{{ route('logout') }}" onclick="event.preventDefault();

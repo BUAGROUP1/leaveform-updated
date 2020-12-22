@@ -1,13 +1,10 @@
-@extends('hr.layouts.hr_master')
-
-@section('title')
-HR Approved
-@endsection
+@extends('hod.layouts.hod_master')
 
 @section('content')
 <div class="card container-fluid">
     <div class="card-body">
-        <h3 class="title-5 m-b-35">Approved Forms</h3>
+        <h3 class="title-5 m-b-35">Pending Forms</h3>
+
         <div class="table-responsive">
 
             <table id="datatable" class="table  table-striped table-data2">
@@ -20,14 +17,12 @@ HR Approved
                         <th>Department</th>
                         <th>Date</th>
                         <th>Applicant</th>
-                        <th>Supervisor</th>
-                        <th>HOD</th>
                         <th>HR</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($approved_view as $item)
+                    @foreach($abc as $item)
 
                     <tr>
                         <td>{{ $item->name }}</td>
@@ -44,17 +39,6 @@ HR Approved
                         <td><span class="status--denied">pending</span></td>
                         @endif
 
-                        @if($item->super_sig =='approved')
-                        <td><span class="status--process">{{ $item->super_sig }}</span></td>
-                        @else
-                        <td><span class="status--denied">pending</span></td>
-                        @endif
-
-                        @if($item->hod_sig =='approved')
-                        <td><span class="status--process">{{ $item->hod_sig }}</span></td>
-                        @else
-                        <td><span class="status--denied">pending</span></td>
-                        @endif
 
                         @if($item->hr_sig =='approved')
                         <td><span class="status--process">{{ $item->hr_sig }}</span></td>
@@ -67,17 +51,11 @@ HR Approved
                                 {{-- <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
                                     <i class="zmdi zmdi-mail-send"></i>
                                 </button> --}}
-                                @if ($item->hod_sig == 'approved')
-                                <a href="{{url('hr_approved_edit/'.$item->id)}}"><button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                    <i class="zmdi zmdi-edit"></i>
-                                </button></a>
-                                @else
                                     <div>
-                                        <i class="fa fa-times-circle ml-2"></i>
-                                        <span>HOD</span>
+                                        <i class="fa fa-ban ml-2"></i>
                                     </div>
-                                @endif
-                                {{-- <button class="item hr_approved_delete" data-toggle="tooltip" data-placement="top" title="Delete">
+                                {{-- <button class="item hr_pending_delete" data-toggle="tooltip" data-placement="top"
+                                    title="Delete">
                                     <i class="zmdi zmdi-delete"></i>
                                 </button> --}}
                                 {{-- <button class="item" data-toggle="tooltip" data-placement="top" title="More">
@@ -95,4 +73,3 @@ HR Approved
     </div>
 </div>
 @endsection
-

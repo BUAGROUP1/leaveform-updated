@@ -28,7 +28,7 @@ HOD Dashboard
                         <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for datas &amp; reports...">
                         <span class="au-btn--submit2">
                             <i class="zmdi zmdi-search"></i>
-                        </span> 
+                        </span>
                     </form>
                 </div>
             </div>
@@ -56,7 +56,7 @@ HOD Dashboard
 <section class="statistic statistic2">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-4">
                 <div class="statistic__item statistic__item--green">
                 <h2 class="number">{{ $theleaveform }}</h2>
                     <span class="desc">Total Forms</span>
@@ -65,7 +65,7 @@ HOD Dashboard
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-4">
                 <div class="statistic__item statistic__item--blue">
                     <h2 class="number">{{ $theleaveform2 }}</h2>
                     <span class="desc">Approved Forms</span>
@@ -74,21 +74,12 @@ HOD Dashboard
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-4">
                 <div class="statistic__item statistic__item--orange">
                     <h2 class="number">{{ $theleaveform3 }}</h2>
                     <span class="desc">Pending Forms</span>
                     <div class="icon">
                         <i class="zmdi zmdi-calendar-note"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="statistic__item statistic__item--red">
-                    <h2 class="number">{{ $theleaveform4 }}</h2>
-                    <span class="desc">Users</span>
-                    <div class="icon">
-                        <i class="zmdi zmdi-account-o"></i>
                     </div>
                 </div>
             </div>
@@ -100,5 +91,5 @@ HOD Dashboard
 @endsection
 
 @section('scripts')
-    
+
 @endsection

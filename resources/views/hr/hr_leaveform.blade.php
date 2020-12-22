@@ -1,19 +1,30 @@
-@extends('users.layouts.users_master')
-
-@section('title') Leave Form @endsection
+@extends('hr.layouts.hr_master')
 
 @section('header')
-    <link rel="icon" type="image/x-icon" sizes="32x32" href="favicon.png">
-    <script src="https://kit.fontawesome.com/10155896e6.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/leave_form.css">
 @endsection
 
 @section('content')
+<div class="panel-header panel-header-sm"></div>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Leave Form
+    </title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/10155896e6.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/leave_form.css">
+    <link rel="icon" type="image/x-icon" sizes="32x32" href="favicon.png">
+</head>
+<body>
 <div class="desktop moblie">
 <main class="container">
-    <form class="form-container" method="POST" action="submit_leave">
+    <form class="form-container" method="POST" action="hr_submit_leave">
         @csrf
         <header>
 
@@ -196,8 +207,8 @@
 
             <hr>
 
-            <input type="hidden" value="pending" name="super_sig" id="super_sig" hidden />
-            <input type="hidden" value="pending" name=" hod_sig" id="hod_sig" hidden />
+            <input type="hidden" value="approved" name="super_sig" id="super_sig" hidden />
+            <input type="hidden" value="approved" name=" hod_sig" id="hod_sig" hidden />
             <input type="hidden" value="pending" name=" hr_sig" id="hr_sig" hidden />
         </section>
 
@@ -237,6 +248,15 @@
     </form>
 </main>
 </div>
+
+
+
+</body>
+</html>
+
+@endsection
+
+@section('scripts')
 
 @endsection
 

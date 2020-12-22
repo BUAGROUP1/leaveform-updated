@@ -70,9 +70,16 @@ Supervisor Approved
                                 {{-- <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
                                     <i class="zmdi zmdi-mail-send"></i>
                                 </button> --}}
+                                @if ($item->decl_sig == 'approved')
                                 <a href="{{url('s_approved_edit/'.$item->id)}}"><button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                     <i class="zmdi zmdi-edit"></i>
                                 </button></a>
+                                @else
+                                    <div>
+                                        <i class="fa fa-times-circle ml-2"></i>
+                                        <span>User</span>
+                                    </div>
+                                @endif
                                 {{-- <button class="item s_approved_delete" data-toggle="tooltip" data-placement="top" title="Delete">
                                     <i class="zmdi zmdi-delete"></i>
                                 </button> --}}
@@ -93,7 +100,7 @@ Supervisor Approved
 @endsection
 
 @section('scripts')
-    
+
 <script>
     /*confirm and delete with id or value closest to the button*/
 

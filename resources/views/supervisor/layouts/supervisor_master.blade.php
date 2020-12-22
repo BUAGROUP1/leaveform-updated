@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="/css/dataTables.min.css">
 
     <link rel="stylesheet" href="/css/sickomode.css">
-    
+
     @yield('header')
 </head>
 
@@ -62,7 +62,7 @@
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
-                        
+
                         <li class="{{ Request::is('supervisor_dashboard*') ? 'active' : '' }}">
                             <a href="/supervisor_dashboard">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
@@ -74,6 +74,14 @@
                         <li class="{{ Request::is('supervisor_pending*') ? 'active' : '' }}">
                             <a href="/supervisor_pending">
                                 <i class="fas fa-exclamation"></i>Pending forms</a>
+                        </li>
+                        <li class="{{ Request::is('supervisor_leaveform*') ? 'active' : '' }}">
+                            <a href="/supervisor_leaveform">
+                                <i class="fas fa-list-alt"></i>Leaveform</a>
+                        </li>
+                        <li class="{{ Request::is('supervisor_status*') ? 'active' : '' }}">
+                            <a href="/supervisor_status">
+                                <i class="fas fa-clock-o"></i>My Status</a>
                         </li>
                         <li class="{{ Request::is('supervisor_calendar*') ? 'active' : '' }}">
                             <a href="/supervisor_calendar">
@@ -97,7 +105,7 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        
+
                         <li class="{{ Request::is('supervisor_dashboard*') ? 'active' : '' }}">
                             <a href="/supervisor_dashboard">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
@@ -109,6 +117,14 @@
                         <li class="{{ Request::is('supervisor_pending*') ? 'active' : '' }}">
                             <a href="/supervisor_pending">
                                 <i class="fas fa-exclamation"></i>Pending Forms</a>
+                        </li>
+                        <li class="{{ Request::is('supervisor_leaveform*') ? 'active' : '' }}">
+                            <a href="/supervisor_leaveform">
+                                <i class="fas fa-list-alt"></i>Leaveform</a>
+                        </li>
+                        <li class="{{ Request::is('supervisor_status*') ? 'active' : '' }}">
+                            <a href="/supervisor_status">
+                                <i class="fas fa-clock-o"></i>My Status</a>
                         </li>
                         <li class="{{ Request::is('supervisor_calendar*') ? 'active' : '' }}">
                             <a href="/supervisor_calendar">
@@ -156,7 +172,7 @@
                                                     <a href="/supervisor_profile">
                                                         <i class="zmdi zmdi-account"></i>Profile</a>
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="account-dropdown__footer">
                                                 <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -180,7 +196,7 @@
             </header>
             <!-- HEADER DESKTOP-->
              <!-- END PAGE CONTAINER-->
-             
+
              <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
@@ -188,13 +204,13 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
     </div>
 
 
-    
+
 
     <!-- Jquery JS-->
     <script src="/vendor/jquery-3.2.1.min.js"></script>

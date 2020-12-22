@@ -17,29 +17,39 @@ use App\Http\Requests\PasswordRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\sendHOD;
+use App\Mail\HOD\sendHOD_leave;
 
 class HOD_Controller extends Controller
 {
     public function index()
     {
-        $theleaveform = theleaveformModel::all()->count();
-
         $val = 'approved';
-        $val2 = 'pending';
-        $theleaveform2 = theleaveformModel::where('decl_sig', 'like', '%' . $val . '%')
+        $val3 = 'hod';
+        $val4 = auth()->user()->department;
+
+        $theleaveform = theleaveformModel::where('department', "$val4")->count();
+
+        $theleaveform2 = theleaveformModel::where('department', "$val4")
+                            ->where('decl_sig', 'like', '%' . $val . '%')
                             ->where('super_sig', 'like', '%' . $val . '%')
                             ->where('hod_sig', 'like', '%' . $val . '%')
                             ->where('hr_sig', 'like', '%' . $val . '%')->count();
-        $theleaveform3 = theleaveformModel::orwhere('decl_sig', 'like', '%' . $val2 . '%')
+
+        $theleaveform3 = theleaveformModel::where('department', "$val4")
+                            ->where(function($bbc){
+                                $val2 = 'pending';
+                            return $bbc
+                            ->orwhere('decl_sig', 'like', '%' . $val2 . '%')
                             ->orwhere('super_sig', 'like', '%' . $val2 . '%')
                             ->orwhere('hod_sig', 'like', '%' . $val2 . '%')
-                            ->orwhere('hr_sig', 'like', '%' . $val2 . '%')->count();
-        $theleaveform4 = DB::table('users')->count();
+                            ->orwhere('hr_sig', 'like', '%' . $val2 . '%');
+                            })->count();
+
+
         return view('hod.hod_dashboard')
             ->with('theleaveform', $theleaveform)
             ->with('theleaveform2', $theleaveform2)
-            ->with('theleaveform3', $theleaveform3)
-            ->with('theleaveform4', $theleaveform4);
+            ->with('theleaveform3', $theleaveform3);
     }
 
     public function profile_view()
@@ -67,7 +77,11 @@ class HOD_Controller extends Controller
     {
        if($request->hasFile('avatar')){
            $avatar = $request->file('avatar');
-           $filename = auth()->user()->name . '.' . $avatar->getClientOriginalExtension() ;
+           $filename = auth()->user()->name . '.' . $avatar->getClientOriginalExtension();
+/* me */   if($avatar->getClientOriginalExtension() !== 'jpg'){
+            Alert::error('File extension not supported', 'Use only .jpg');
+            return view('hod.hod_profile');
+        }
            Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/avatars/' . $filename) );
            $user = Auth::user();
            $user->avatar =$filename;
@@ -81,11 +95,16 @@ class HOD_Controller extends Controller
 
     public function pending()
     {
-        $val = 'pending';
-        $pending__view = theleaveformModel::orwhere('decl_sig', 'like', '%' . $val . '%')
-        ->orwhere('super_sig', 'like', '%' . $val . '%')
-        ->orwhere('hod_sig', 'like', '%' . $val . '%')
-        ->orwhere('hr_sig', 'like', '%' . $val . '%')->get();
+
+        $val2 = auth()->user()->department;
+        $pending__view = theleaveformModel::where('department', "$val2")->where(function($bbc){
+            $val = 'pending';
+            return $bbc
+            ->orwhere('decl_sig', 'like', '%' . $val . '%')
+            ->orwhere('super_sig', 'like', '%' . $val . '%')
+            ->orwhere('hod_sig', 'like', '%' . $val . '%')
+            ->orwhere('hr_sig', 'like', '%' . $val . '%');
+        })->get();
         return view('hod.hod_pending')
             ->with('pending_view', $pending__view);
     }
@@ -118,8 +137,8 @@ class HOD_Controller extends Controller
         $abc = User::where('usertype', 'like', '%' . $val . '%')
                             ->get('email');
 
-        $hostname = "smtp.google.com";
-        $port = 465;
+        $hostname = "www.google.com";
+        $port = 80;
 
         $con = @fsockopen($hostname, $port);
         if(!$con){
@@ -148,7 +167,9 @@ class HOD_Controller extends Controller
     public function approved()
     {
         $val = 'approved';
-        $approved_view = theleaveformModel::where('decl_sig', 'like', '%' . $val . '%')
+        $val2 = auth()->user()->department;
+        $approved_view = theleaveformModel::where('department', "$val2")
+        ->where('decl_sig', 'like', '%' . $val . '%')
         ->where('super_sig', 'like', '%' . $val . '%')
         ->where('hod_sig', 'like', '%' . $val . '%')
         ->where('hr_sig', 'like', '%' . $val . '%')->get();
@@ -185,4 +206,128 @@ class HOD_Controller extends Controller
     {
         return view('hod.hod_calendar');
     }
+    public function hod_leaveform_index()
+    {
+        return view('hod.hod_leaveform');
+    }
+    public function hod_submit_leave(Request $req)
+    {
+        $user = new theleaveformModel;
+        $user->StaffID= $req->StaffID;
+        $user->date= $req->date;
+        $user->name= $req->name;
+        $user->sapno= $req->sapno;
+        $user->cadre= $req->cadre;
+        $user->department= $req->department;
+        $user->shift= $req->shift;
+        $user->leavetype= $req->leavetype;
+        $user->reason= $req->reason;
+        $user->leaveyear= $req->leaveyear;
+        $user->entitledleave= $req->entitledleave;
+        $user->daystaken= $req->daystaken;
+        $user->totdaysvac= $req->totdaysvac;
+        $user->outstanding= $req->outstanding;
+        $user->publicholidays= $req->publicholidays;
+        $user->lcommences= $req->lcommences;
+        $user->lends= $req->lends;
+        $user->rdate= $req->rdate;
+        $user->contact_add= $req->contact_add;
+        $user->phone= $req->phone;
+        $user->email= $req->email;
+        $user->decl= $req->decl;
+        $user->decl_sig= $req->decl_sig;
+        $user->decl_date= $req->decl_date;
+        $user->super_sig= $req->super_sig;
+        $user->super_date= $req->super_date;
+        $user->hod_sig= $req->hod_sig;
+        $user->hod_date= $req->hod_date;
+        $user->hr_sig= $req->hr_sig;
+        $user->hr_date= $req->hr_date;
+
+
+        $data = array(
+            'hod_name' => $req->name,
+            'hod_department' => $req->department,
+            'hod_email' => $req->email
+        );
+
+        $val = 'hr';
+
+        $abc = User::where('usertype', 'like', '%' . $val . '%')
+                            ->get(['email']);
+
+        $hostname = "www.google.com";
+        $port = 80;
+
+        $con = @fsockopen($hostname, $port);
+
+        if (!$con) {
+          Alert::error('Email not Sent', 'Please check your internet connection');
+          return redirect('/hod_dashboard');
+        } else {
+            $user->save();
+            foreach ( $abc as $xyz ) {
+            Mail::to("$xyz->email")->send(new sendHOD_leave($data)); }
+        }
+
+
+        Alert::success('Submitted', 'The Form is Successfully Submitted');
+        return view('/hod_dashboard');
+    }
+    public function hod_status_index()
+    {
+        $val = 'approved';
+        $val3 = auth()->user()->email;
+
+        $theleaveform = theleaveformModel::where('email', "$val3")->count();
+
+        $theleaveform2 = theleaveformModel::where('email', "$val3")
+                            ->where('decl_sig', 'like', '%' . $val . '%')
+                            ->where('super_sig', 'like', '%' . $val . '%')
+                            ->where('hod_sig', 'like', '%' . $val . '%')
+                            ->where('hr_sig', 'like', '%' . $val . '%')->count();
+        $theleaveform3 = theleaveformModel::where('email', "$val3")
+                            ->where(function($bbc){
+                                $val2 = 'pending';
+                                return $bbc
+                                ->orwhere('decl_sig', 'like', '%' . $val2 . '%')
+                                ->orwhere('super_sig', 'like', '%' . $val2 . '%')
+                                ->orwhere('hod_sig', 'like', '%' . $val2 . '%')
+                                ->orwhere('hr_sig', 'like', '%' . $val2 . '%');
+                            })->count();
+        return view('hod.hod_status')
+            ->with('theleaveform', $theleaveform)
+            ->with('theleaveform2', $theleaveform2)
+            ->with('theleaveform3', $theleaveform3);
+    }
+    public function hod_status_approved()
+    {
+        $val = auth()->user()->email;
+        $val2 = 'approved';
+
+        $abc = theleaveformModel::where('email', "$val")
+        ->where('decl_sig', 'like', '%' . $val2 . '%')
+        ->where('super_sig', 'like', '%' . $val2 . '%')
+        ->where('hod_sig', 'like', '%' . $val2 . '%')
+        ->where('hr_sig', 'like', '%' . $val2 . '%')->get();
+        return view('hod.hod_status_approved')
+            ->with('abc', $abc);
+    }
+    public function hod_status_pending()
+    {
+        $val = auth()->user()->email;
+        $abc = theleaveformModel::where('email', "$val")
+                            ->where(function($bbc){
+                                $val2 = 'pending';
+                                return $bbc
+                                ->orwhere('decl_sig', 'like', '%' . $val2 . '%')
+                                ->orwhere('super_sig', 'like', '%' . $val2 . '%')
+                                ->orwhere('hod_sig', 'like', '%' . $val2 . '%')
+                                ->orwhere('hr_sig', 'like', '%' . $val2 . '%');
+                            })->get();
+        return view('hod.hod_status_pending')
+            ->with('abc', $abc);
+    }
+
 }
+

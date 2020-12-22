@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="/css/dataTables.min.css">
 
     <link rel="stylesheet" href="/css/sickomode.css">
-    
+
     @yield('header')
 </head>
 
@@ -62,7 +62,7 @@
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
-                        
+
                         <li class="{{ Request::is('hod_dashboard*') ? 'active' : '' }}">
                             <a href="/hod_dashboard">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
@@ -74,6 +74,14 @@
                         <li class="{{ Request::is('hod_pending*') ? 'active' : '' }}">
                             <a href="/hod_pending">
                                 <i class="fas fa-exclamation"></i>Pending Forms</a>
+                        </li>
+                        <li class="{{ Request::is('hod_leaveform*') ? 'active' : '' }}">
+                            <a href="/hod_leaveform">
+                                <i class="fas fa-list-alt"></i>Leaveform</a>
+                        </li>
+                        <li class="{{ Request::is('hod_status*') ? 'active' : '' }}">
+                            <a href="/hod_status">
+                                <i class="fas fa-clock-o"></i>My Status</a>
                         </li>
                         <li class="{{ Request::is('hod_calendar*') ? 'active' : '' }}">
                             <a href="/hod_calendar">
@@ -97,7 +105,7 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        
+
                         <li class="{{ Request::is('hod_dashboard*') ? 'active' : '' }}">
                             <a href="/hod_dashboard">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
@@ -110,11 +118,19 @@
                             <a href="/hod_pending">
                                 <i class="fas fa-exclamation"></i>Pending Forms</a>
                         </li>
+                        <li class="{{ Request::is('hod_leaveform*') ? 'active' : '' }}">
+                            <a href="/hod_leaveform">
+                                <i class="fas fa-list-alt"></i>Leaveform</a>
+                        </li>
+                        <li class="{{ Request::is('hod_status*') ? 'active' : '' }}">
+                            <a href="/hod_status">
+                                <i class="fas fa-clock-o"></i>My Status</a>
+                        </li>
                         <li class="{{ Request::is('hod_calendar*') ? 'active' : '' }}">
                             <a href="/hod_calendar">
                                 <i class="fas fa-calendar-alt"></i>Calendar</a>
                         </li>
-                        
+
                     </ul>
                 </nav>
             </div>
@@ -130,7 +146,7 @@
                         <div class="header-wrap">
 
                             <div class="au-input au-input--xl" style="visibility: hidden;"></div>
-                            
+
                             <div class="header-button">
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
@@ -159,7 +175,7 @@
                                                     <a href="/hod_profile">
                                                         <i class="zmdi zmdi-account"></i>Profile</a>
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="account-dropdown__footer">
                                                 <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -183,7 +199,7 @@
             </header>
             <!-- HEADER DESKTOP-->
              <!-- END PAGE CONTAINER-->
-             
+
              <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
@@ -202,7 +218,7 @@
     </div>
 
 
-    
+
 
     <!-- Jquery JS-->
     <script src="/vendor/jquery-3.2.1.min.js"></script>
@@ -235,7 +251,7 @@
     <script>
         $(document).ready( function () {
         $('#datatable').DataTable();
-    } );    
+    } );
     </script>
 
     @yield('scripts')

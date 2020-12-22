@@ -27,7 +27,7 @@ HR dashboard
                         <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for datas &amp; reports...">
                         <span class="au-btn--submit2">
                             <i class="zmdi zmdi-search"></i>
-                        </span> 
+                        </span>
                     </form>
                 </div>
             </div>
@@ -55,7 +55,7 @@ HR dashboard
 <section class="statistic statistic2">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-4">
                 <div class="statistic__item statistic__item--green">
                 <h2 class="number">{{ $theleaveform }}</h2>
                     <span class="desc">Total Forms</span>
@@ -64,7 +64,7 @@ HR dashboard
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-4">
                 <div class="statistic__item statistic__item--blue">
                     <h2 class="number">{{ $theleaveform2 }}</h2>
                     <span class="desc">Approved Forms</span>
@@ -73,7 +73,7 @@ HR dashboard
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-4">
                 <div class="statistic__item statistic__item--orange">
                     <h2 class="number">{{ $theleaveform3 }}</h2>
                     <span class="desc">Pending Forms</span>
@@ -82,7 +82,7 @@ HR dashboard
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
+            {{-- <div class="col-md-6 col-lg-3">
                 <div class="statistic__item statistic__item--red">
                     <h2 class="number">{{ $theleaveform4 }}</h2>
                     <span class="desc">Users</span>
@@ -90,7 +90,7 @@ HR dashboard
                         <i class="zmdi zmdi-account-o"></i>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>
@@ -98,5 +98,5 @@ HR dashboard
 @endsection
 
 @section('scripts')
-    
+
 @endsection

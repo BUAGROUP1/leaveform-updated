@@ -1,1 +1,13 @@
-1. HOW TO CONFIGURE THE MAIL
+1. FOR GETTING THE VALUE OF CSRF TOKEN IN THE JAVA-SCRIPT SECTION
+ a. put it at the meta tag in the header and get the value in javasript.
+    <header>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    </header>
+    window.token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    window.console.log("the token is", token.abc)
+ b. write php in javasript
+    window.token = @php echo json_encode([ 'abc' => csrf_token()] ) @endphp
+    window.console.log("the token is", token.abc)
+ c. write it directly.
+    window.token = {{ csrf_token() }}
+    window.console.log("the token is", token.abc)

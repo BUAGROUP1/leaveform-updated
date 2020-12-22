@@ -28,7 +28,8 @@
     <link href="/vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-    
+    <!--DataTables -->
+    <link rel="stylesheet" href="/css/dataTables.min.css">
 
     <!-- Main CSS-->
     <link href="/css/theme.css" rel="stylesheet" media="all">
@@ -62,7 +63,7 @@
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
-                        
+
                         <li class="{{ Request::is('home*') ? 'active' : '' }}">
                             <a href="/home">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
@@ -100,7 +101,7 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        
+
                         <li class="{{ Request::is('home*') ? 'active' : '' }}">
                             <a href="/home">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
@@ -136,7 +137,7 @@
                         <div class="header-wrap">
                             <div class="au-input au-input--xl" style="visibility: hidden;"></div>
                             <div class="header-button">
-                               
+
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
@@ -196,7 +197,7 @@
                     </div>
                 </div>
             </div>
-            
+
         <div class="row">
             <div class="col-md-12">
                 <div class="copyright">
@@ -204,7 +205,7 @@
                 </div>
             </div>
         </div>
-        
+
         </div>
     </div>
 
@@ -226,13 +227,14 @@
     <script src="/vendor/circle-progress/circle-progress.min.js"></script>
     <script src="/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="/vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="/vendor/select2/select2.min.js">
-    </script>
+    <script src="/vendor/select2/select2.min.js"></script>
+    <!--DataTables -->
+    <script src="/js/dataTables.min.js"></script>
 
     <script>
         $(document).ready( function () {
         $('#datatable').DataTable();
-    } );    
+    } );
     </script>
 
     <!-- Main JS-->

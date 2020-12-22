@@ -70,10 +70,17 @@ HOD Pending
                                 {{-- <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
                                     <i class="zmdi zmdi-mail-send"></i>
                                 </button> --}}
+                                @if ($item->super_sig == 'approved')
                                 <a href="{{url('hod_pending_edit/'.$item->id)}}" class="mr-3"><button class="item" data-toggle="tooltip"
-                                        data-placement="top" title="Edit">
-                                        <i class="zmdi zmdi-edit"></i>
-                                    </button></a>
+                                    data-placement="top" title="Edit">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </button></a>
+                                @else
+                                    <div>
+                                        <i class="fa fa-times-circle" style="margin-left: 28px"></i>
+                                        <span>Supervisor</span>
+                                    </div>
+                                @endif
                                 {{-- <button class="item hod_pending_delete" data-toggle="tooltip" data-placement="top"
                                     title="Delete">
                                     <i class="zmdi zmdi-delete"></i>

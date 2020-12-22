@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\sendUser;
 
 class leaveformController extends Controller
- 
+
 {
 
     public function index()
@@ -55,7 +55,7 @@ class leaveformController extends Controller
         $user->hod_date= $req->hod_date;
         $user->hr_sig= $req->hr_sig;
         $user->hr_date= $req->hr_date;
-        $user->save();
+
 
         $data = array(
             'name' => $req->name
@@ -66,10 +66,21 @@ class leaveformController extends Controller
 
         $abc = User::where('usertype', 'like', '%' . $val . '%')
                             ->where('department', 'like', '%' . $val2 . '%')
-                            ->get(['email']); 
-                         
-        foreach ( $abc as $xyz ) {     
-        Mail::to("$xyz->email")->send(new sendUser($data)); }
+                            ->get(['email']);
+
+        $hostname = "www.google.com";
+        $port = 80;
+
+        $con = @fsockopen($hostname, $port);
+
+        if (!$con) {
+          Alert::error('Email not Sent', 'Please check your internet connection');
+          return redirect('/home');
+        } else {
+            $user->save();
+            foreach ( $abc as $xyz ) {
+            Mail::to("$xyz->email")->send(new sendUser($data)); }
+        }
 
 
         Alert::success('Submitted', 'The Form is Successfully Submitted');

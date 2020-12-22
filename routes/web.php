@@ -94,7 +94,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     //for the profile
     Route::post('/a_profile_image_update', 'Admin\DashboardController@insert_profile_image');
     Route::get('/admin_calendar', 'Admin\DashboardController@admin_calendar_index');
-    
+
 });
 
 //end ADMIN MIDDLEWARE
@@ -119,7 +119,12 @@ Route::group(['middleware' => ['auth', 'is_hr']], function () {
     Route::put('/hr_approved_update/{id}', 'HR\HR_Controller@approved_update');
     Route::delete('/hr_approved_delete/{id}','HR\HR_Controller@hr_approved_delete');
     Route::get('/hr_calendar', 'HR\HR_Controller@hr_calendar_index');
-});   
+    Route::get('/hr_leaveform', 'HR\HR_Controller@hr_leaveform_index');
+    Route::post('hr_submit_leave', 'HR\HR_Controller@hr_leaveform_save');
+    Route::get('/hr_status', 'HR\HR_Controller@hr_status_index');
+    Route::get('/hr_status_pending', 'HR\HR_Controller@hr_status_pending');
+    Route::get('/hr_status_approved', 'HR\HR_Controller@hr_status_approved');
+});
 //END HR MIDDLEWARE
 
 //SUPERVISOR MIDDLEWARE
@@ -141,13 +146,18 @@ Route::group(['middleware' => ['auth', 'is_supervisor']], function () {
     Route::put('/s_approved_update/{id}', 'Supervisor\SupervisorController@approved_update');
     Route::delete('/s_approved_delete/{id}','Supervisor\SupervisorController@s_approved_delete');
     Route::get('/supervisor_calendar', 'Supervisor\SupervisorController@supervisor_calendar_index');
+    Route::get('/supervisor_leaveform', 'Supervisor\SupervisorController@supervisor_leaveform_index');
+    Route::post('supervisor_submit_leave', 'Supervisor\SupervisorController@supervisor_leaveform_save');
+    Route::get('/supervisor_status', 'Supervisor\SupervisorController@supervisor_status_index');
+    Route::get('/supervisor_status_approved', 'Supervisor\SupervisorController@supervisor_status_approved');
+    Route::get('/supervisor_status_pending', 'Supervisor\SupervisorController@supervisor_status_pending');
 
 });
 //END SUPERVISOR MIDDLEWARE
 
 
 //HOD MIDDLEWARE
-Route::group(['middleware' => ['auth', 'is_hod']], function () { 
+Route::group(['middleware' => ['auth', 'is_hod']], function () {
     Route::get('/hod_dashboard', 'HOD\HOD_Controller@index');
     Route::get('/hod_profile', 'HOD\HOD_Controller@profile_view');
     Route::put('hod_profile_update', 'HOD\HOD_Controller@profile_update');
@@ -157,12 +167,17 @@ Route::group(['middleware' => ['auth', 'is_hod']], function () {
     Route::get('/hod_pending', 'HOD\HOD_Controller@pending');
     Route::get('/hod_pending_edit/{id}', 'HOD\HOD_Controller@pending_edit');
     Route::put('/hod_pending_update/{id}', 'HOD\HOD_Controller@pending_update');
-    Route::delete('/hod_pending_delete/{id}','HOD\HOD_Controller@hod_pending_delete');   
-    
+    Route::delete('/hod_pending_delete/{id}','HOD\HOD_Controller@hod_pending_delete');
+
     Route::get('/hod_approved', 'HOD\HOD_Controller@approved');
     Route::get('/hod_approved_edit/{id}', 'HOD\HOD_Controller@approved_edit');
     Route::put('/hod_approved_update/{id}', 'HOD\HOD_Controller@approved_update');
     Route::delete('/hod_approved_delete/{id}','HOD\HOD_Controller@hod_approved_delete');
     Route::get('/hod_calendar', 'HOD\HOD_Controller@hod_calendar_index');
-});    
+    Route::get('/hod_leaveform', 'HOD\HOD_Controller@hod_leaveform_index');
+    Route::get('/hod_status', 'HOD\HOD_Controller@hod_status_index');
+    Route::get('/hod_status_approved', 'HOD\HOD_Controller@hod_status_approved');
+    Route::get('/hod_status_pending', 'HOD\HOD_Controller@hod_status_pending');
+    Route::post('hod_submit_leave', 'HOD\HOD_Controller@hod_submit_leave');
+});
 //END HOD MIDDLEWARE
