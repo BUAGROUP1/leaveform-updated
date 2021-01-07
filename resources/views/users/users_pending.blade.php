@@ -8,7 +8,7 @@ Users Pending Forms
 
 <div class="card container-fluid">
     <div class="card-body">
-        <h3 class="title-5 m-b-35">Approved Forms</h3>
+        <h3 class="title-5 m-b-35">Pending Forms</h3>
         <div class="table-responsive">
 
             <table id="datatable" class="table  table-striped table-data2">
@@ -92,7 +92,7 @@ Users Pending Forms
 @endsection
 
 @section('scripts')
-    
+
 <script>
     /*confirm and delete with id or value closest to the button*/
 

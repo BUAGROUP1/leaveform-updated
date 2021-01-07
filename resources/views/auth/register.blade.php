@@ -58,14 +58,14 @@
                         <div class="form-group row">
                             <label for="department" class="col-md-4 col-form-label text-md-right">{{ __('Departments') }}</label>
 
-                            <div class="col-md-6">           
-                                    <select name="department" id="department" class="form-control">
+                            <div class="col-md-6">
+                                    <select name="department" id="department" class="form-control" @error('department') is-invalid @enderror" name="department" value="{{ old('department') }}" required autocomplete="department">
                                         <option></option>
                                         <option value="IT">IT</option>
                                         <option value="Coporate-Communications">Coporate Communications</option>
                                         <option value="Human-Resources">Human Resources</option>
-                                    </select>  
-                                    
+                                    </select>
+
                                     @error('department')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -92,9 +92,9 @@
 
                         {{-- hidden user type --}}
                         <input type="hidden" value="user" name="usertype" id="usertype" hidden>
-                        {{-- input user image --}}
+                        {{-- end hidden user type --}}
 
-                        
+
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>

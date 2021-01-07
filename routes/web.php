@@ -64,9 +64,7 @@ Route::get('/users_approved', 'TheUsers\UsersController@users_approved');
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
 
-    Route::get('/dashboard', 'Admin\DashboardController@index'); /*function () {
-        return view('admin.dashboard');
-    });*/
+    Route::get('/dashboard', 'Admin\DashboardController@index');
 
     Route::get('/usermanagement', 'Admin\DashboardController@usermanaged');
     Route::get('/role-edit/{id}', 'Admin\DashboardController@usermanagededit');
@@ -94,6 +92,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     //for the profile
     Route::post('/a_profile_image_update', 'Admin\DashboardController@insert_profile_image');
     Route::get('/admin_calendar', 'Admin\DashboardController@admin_calendar_index');
+    Route::get('/admin_leaveform', 'Admin\DashboardController@admin_leaveform_index');
+    Route::post('admin_submit_leave', 'Admin\DashboardController@admin_leaveform_save');
 
 });
 
