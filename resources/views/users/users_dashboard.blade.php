@@ -1,7 +1,7 @@
 @extends('users.layouts.users_master')
 
 @section('content')
-    
+
 <!-- BREADCRUMB-->
 <section class="au-breadcrumb2">
     <div class="container">
@@ -11,7 +11,7 @@
                     <div class="au-breadcrumb-left">
                         <span class="au-breadcrumb-span">USER:</span>
                         <ul class="list-unstyled list-inline au-breadcrumb__list">
-                            <li class="list-inline-item active">
+                            <li class="list-inline-item active dark:text-white">
                                 <a href="#">Home</a>
                             </li>
                             <li class="list-inline-item seprate">
@@ -24,7 +24,7 @@
                         <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for datas &amp; reports...">
                         <span class="au-btn--submit2">
                             <i class="zmdi zmdi-search"></i>
-                        </span> 
+                        </span>
                     </form>
                 </div>
             </div>

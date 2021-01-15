@@ -6,7 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/favicon" href="/img/logo.jpg">
-
+    <link href="{{ asset('/css/tailwind.css') }}" rel="stylesheet">
+    <script src="{{ asset('/js/alpine.min.js') }}" defer></script>
 
     <!-- Title Page-->
     <title>Dashboard</title>
